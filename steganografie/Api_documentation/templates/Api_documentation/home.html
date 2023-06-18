@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Api Documentation</title>
+    <style>
+        tabel,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table style="width: 100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for foto in fotografii %}
+            <tr>
+                <td> {{ fotografii.id }} </td>
+                <td> {{ fotografii.Name }} </td>
+                <td> {{ fotografii.Status }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

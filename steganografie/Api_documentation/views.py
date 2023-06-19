@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-fotografii = [
+foto = [
     {
         'id': 1,
         'Nume': 'Harry Potter',
@@ -26,7 +26,7 @@ fotografii = [
 
 
 def home(request):
-    context = {'fotografii': fotografii}
+    context = {'foto': foto}
     return render(request, 'Api_documentation/home.html', context)
 
 

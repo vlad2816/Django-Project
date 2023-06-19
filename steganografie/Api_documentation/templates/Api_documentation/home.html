@@ -1,37 +1,24 @@
-<html lang="en">
+{% extends 'Api_documentation/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Api Documentation</title>
-    <style>
-        tabel,
-        th,
-        td {
-            border: 1px solid black;
-        }
-    </style>
-</head>
 
-<body>
-    <table style="width: 100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block content %}
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+    <div class="container">
 
-            {% for foto in fotografii %}
-            <tr>
-                <td> {{ fotografii.id }} </td>
-                <td> {{ fotografii.Name }} </td>
-                <td> {{ fotografii.Status }} </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-
-</html>
+        {% endblock %}

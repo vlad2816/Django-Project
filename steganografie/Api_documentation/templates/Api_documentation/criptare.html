@@ -1,12 +1,45 @@
-<html lang="en">
+{% extends 'Api_documentation/base.html' %}
+
+{% block content %}
 
 <head>
-    <meta charset="UTF-8">
-    <title>Criptare foto</title>
+    <style>
+        .container {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #preview-image {
+            max-width: 400px;
+            max-height: 400px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2> Aici poti cripta o fotografie </h2>'
+
+    <div class="container">
+        <h2>Încărcați o imagine</h2>
+
+        <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
+
+        <div id="preview-container">
+            <img id="preview-image" src="#" alt="Imaginea încărcată">
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var preview = document.getElementById('preview-image');
+                preview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
 </body>
 
-</html>
+{% endblock %}

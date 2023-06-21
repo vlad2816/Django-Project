@@ -1,16 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import cv2
 
 
 def home(request):
     return render(request, 'Api_documentation/home.html')
 
 
-def criptare(request):
-
-    import cv2
-
-def encrypt_message_in_photo(photo_path, message):
+def encrypt_message_in_photo(request):
     # Read the photo
     photo = cv2.imread(photo_path)
 
@@ -37,11 +34,5 @@ def encrypt_message_in_photo(photo_path, message):
     encrypted_photo_path = "encrypted_photo.jpg"
     cv2.imwrite(encrypted_photo_path, photo)
     print(f"Encrypted photo saved as: {encrypted_photo_path}")
-
-# Example usage
-photo_path = "photo.jpg"
-message = "This is a secret message!"
-
-encrypt_message_in_photo(photo_path, message)
 
     return render(request, 'Api_documentation/criptare.html')

@@ -1,10 +1,8 @@
+
 from django.db import models
 
-# Create your models here.
 
-
-class Photo(models.Model):
-
-    email = models.EmailField("Enter Email")
-    file = models.FileField(upload_to="cache")
-    message = models.CharField("Enter message", max_length=150, default="")
+class HiddenImage(models.Model):
+    image = models.FileField(upload_to='hidden_images/')
+    text = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)

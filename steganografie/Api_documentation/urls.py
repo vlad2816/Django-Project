@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('criptare/', views.criptare, name='criptare')
+    path('hide/', views.hide_text, name='hide')
 ]

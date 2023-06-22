@@ -1,38 +1,35 @@
+from PIL import Image, ImageDraw, ImageFont
 from django.shortcuts import render
-from django.http import HttpResponse
-import cv2
+from .forms import HiddenImageForm
 
 
 def home(request):
-    return render(request, 'Api_documentation/home.html')
+    return render(request, 'Api_documentation/base.html')
 
 
-def encrypt_message_in_photo(request):
-    # Read the photo
-    photo = cv2.imread(photo_path)
+def hide_text(request):
+    if request.method == 'POST':
+        image = request.FILES['image']
+        text = request.POST['text']
+        form = HiddenImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            hidden_image = form.save()
 
-    # Convert the message to binary
-    binary_message = ''.join(format(ord(char), '08b') for char in message)
+        img = Image.open(image)
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype('arial.ttf', 14)
+        text_x = 20
+        text_y = 20
 
-    # Ensure that the message can fit in the photo
-    if len(binary_message) > photo.size:
-        raise ValueError("The message is too large to fit in the photo.")
+        text_width, text_height = draw.textsize(text, font=font)
+        draw.rectangle((text_x, text_y, text_x + text_width,
+                       text_y + text_height), fill='white')
 
-    # Iterate over each pixel in the photo
-    for i, bit in enumerate(binary_message):
-        # Get the pixel coordinates
-        x = i % photo.shape[1]
-        y = i // photo.shape[1]
+        # Save the modified image
+        img.save('hidden_text_image.jpg')
 
-        # Modify the least significant bit of the pixel's RGB values
-        pixel = photo[y, x]
-        pixel[0] = (pixel[0] & 0xFE) | int(bit)  # Blue channel
-        pixel[1] = (pixel[1] & 0xFE) | int(bit)  # Green channel
-        pixel[2] = (pixel[2] & 0xFE) | int(bit)  # Red channel
+        return render(request, 'Api_documentation/result.html', {'hidden_image': hidden_image})
+    else:
+        form = HiddenImageForm()
 
-    # Save the modified photo
-    encrypted_photo_path = "encrypted_photo.jpg"
-    cv2.imwrite(encrypted_photo_path, photo)
-    print(f"Encrypted photo saved as: {encrypted_photo_path}")
-
-    return render(request, 'Api_documentation/criptare.html')
+    return render(request, 'Api_documentation/hide_text.html', {'form': form})

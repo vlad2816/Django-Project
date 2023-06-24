@@ -1,10 +1,10 @@
 
 from django.shortcuts import render
 from .forms import HiddenImageForm
-from stegano import exifHeader
 from .models import HiddenImage
 from django.views import View
 from stegano import lsb
+from django.db.models import F
 
 
 def home(request):
@@ -27,17 +27,25 @@ class HideMessageView(View):
 
             encrypted_image = lsb.hide(
                 hidden_image.image.path, hidden_image.text)
-            encrypted_image.save(hidden_image.image.path)
+            encrypted_image_path = 'hidden_images/encrypted_image_{}.png'.format(
+                hidden_image.id)
+            encrypted_image.save(encrypted_image_path)
 
-            return render(request, 'success.html')
+            hidden_image.encrypted_image_path = encrypted_image_path
+            hidden_image.save()
+
+            HiddenImage.objects.update(
+                num_encrypted_images=F('num_encrypted_images') + 1)
+
+            return render(request, 'Api_documentation/templates/Api_documentation/success.html')
         else:
-            return render(request, 'Api_documentation/hide.html', {'form': form})
+            return render(request, 'Api_documentation/templates/Api_documentation/hide.html', {'form': form})
 
 
 def decrypt(request):
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
-        decoded_message = str(exifHeader.reveal(uploaded_file))
-        return render(request, "Api_documentation/decrypt.html", {'decrypt': decoded_message[1:]})
+        decoded_message = lsb.reveal(uploaded_file)
+        return render(request, "/decrypt.html", {'decrypt': decoded_message})
     else:
-        return render(request, "Api_documentation/decrypt.html")
+        return render(request, "/decrypt.html")

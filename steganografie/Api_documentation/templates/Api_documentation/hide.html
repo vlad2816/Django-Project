@@ -1,5 +1,12 @@
-<form method="POST" enctype="multipart/form-data">
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Hide Message</h1>
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Hide Text</button>
+
+    <button type="submit">Hide Message</button>
 </form>
+
+{% endblock %}

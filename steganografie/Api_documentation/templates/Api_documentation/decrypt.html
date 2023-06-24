@@ -1,22 +1,16 @@
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSADSA</title>
-</head>
+{% block content %}
+<h1>Decrypt Message</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*">
+    <p> </p>
+    <br>
+    <button class="btn btn-primary" type="submit">Decrypt hidden message</button>
+    <p>The hidden message encrypted inside the image is:</p>
+    <p> </p>
+    <b> {{ decrypt }} </b>
+</form>
 
-<body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="image" accept="image/*">
-        <p> </p>
-        <br>
-        <button class="btn btn-primary" type="submit">Decrypt hidden message</button>
-        <p>The hidden message encrypted inside the image is:</p>
-        <p> </p>
-        <b> {{ decrypt }} </b>
-    </form>
-</body>
-
-</html>
+{% endblock %}

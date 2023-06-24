@@ -1,16 +1,17 @@
 {% extends 'Api_documentation/base.html' %}
 
 {% block content %}
-<h1>Decrypt Message</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="image" accept="image/*">
-    <p> </p>
-    <br>
-    <button class="btn btn-primary" type="submit">Decrypt hidden message</button>
-    <p>The hidden message encrypted inside the image is:</p>
-    <p> </p>
-    <b> {{ decrypt }} </b>
-</form>
-
+<div class="container">
+    <h1>Decrypt Message</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*">
+        <p> </p>
+        <br>
+        <button class="btn btn-primary" type="submit">Decrypt hidden message</button>
+        <p>The hidden message encrypted inside the image is:</p>
+        <p> </p>
+        <b> {{ decrypt }} </b>
+    </form>
+</div>
 {% endblock %}

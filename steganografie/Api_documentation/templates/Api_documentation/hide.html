@@ -1,12 +1,14 @@
 {% extends 'Api_documentation/base.html' %}
 
 {% block content %}
-<h1>Hide Message</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="container">
+    <h1>Hide Message</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-    <button type="submit">Hide Message</button>
-</form>
+        <button type="submit">Hide Message</button>
+    </form>
+</div>
 
 {% endblock %}

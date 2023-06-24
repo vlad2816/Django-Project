@@ -12,30 +12,70 @@
 </head>
 
 <body>
-    <h1>Vlad Project</h1>
+    <div class="container">
+        <h1> Steganography Project </h1>
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Api Doc</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/hide">Hide</a>
+                        <a class="nav-link" href="/decrypt">Decrypt</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
     <br>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Api Doc</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" href="/hide">Hide</a>
-                    <a class="nav-link" href="/decrypt">Decrypt</a>
+    {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="section-1" class="mb-4">
+                    <h2>About Steganography</h2>
+                    <p>
+                        Steganography is the practice of concealing information within another message or physical
+                        object to avoid detection. Steganography can be used to hide virtually any type of digital
+                        content, including text, image, video, or audio content. That hidden data is then extracted at
+                        its destination.
+                    </p>
+                </div>
+                <div id="section-2" class="mb-4">
+                    <h2>About this project</h2>
+                    <p>
+                        This is my final project for the end of the IT School course. This project consists of
+                        encrypting a message in a photo and being able to decrypt that message.
+                    </p>
+                    <p>
+                        The rules are very simple:
+                    </p>
+                    <ol>
+                        <li>We click on Hide in the nav bar, and in Hide we have to upload a photo with .jpg extension.
+                        </li>
+                        <li>We have to add a message we want, and click on the hide button.</li>
+                        <li>After clicking on the submit button we will be informed that the photo has been successfully
+                            encrypted and we will be redirected to the main site.</li>
+                        <li>With the encrypted photo in the database, we can click on Decrypt in the navbar and upload
+                            the photo from the hidden_images folder. After uploading the photo by clicking on the
+                            Decrypt button we will get the secret message.</li>
+                    </ol>
                 </div>
             </div>
         </div>
-    </nav>
-    <br>
-    {% block content %}
+    </div>
+
     {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    <p></p>
+    <br>
+
 </body>
 
 </html>

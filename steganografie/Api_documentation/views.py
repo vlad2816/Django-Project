@@ -29,7 +29,7 @@ class HideMessageView(View):
 
             encrypted_image = lsb.hide(
                 hidden_image.image.path, hidden_image.text)
-            encrypted_image_path = 'hidden_images/encrypted/encrypted_image_{}.png'.format(
+            encrypted_image_path = 'hidden_images/encrypted_image_{}.png'.format(
                 hidden_image.id)
             encrypted_image.save(os.path.join(
                 settings.MEDIA_ROOT, encrypted_image_path))
